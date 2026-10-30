@@ -1,0 +1,15 @@
+# Replace YOUR-PUBLIC-SITE before Admin deployment.
+# Keep Public and Admin in the same Netlify team for internal proxying.
+[build]
+  publish = "site"
+[[redirects]]
+  from = "/api/*"
+  to = "https://stayhub-public.netlify.app/api/:splat"
+  status = 200
+  force = true
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "DENY"
